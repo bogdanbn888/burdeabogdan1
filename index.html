@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burdea Bogdan-Gabriel · Consilier Local Bivolari (USR)</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       DESIGN SYSTEM
+       ========================= */
+    :root {
+      --primary: #2f80ed;
+      --primary-600: #2563eb;
+      --text: #0f172a;
+      --muted: #64748b;
+      --card: rgba(255,255,255,0.9);
+      --border: #e5e7eb;
+
+      --bg-main: linear-gradient(180deg, #eef3fb 0%, #f8fafc 45%, #f1f5f9 100%);
+      --bg-projects: linear-gradient(180deg, #f1f5f9 0%, #eefdf6 70%);
+      --bg-info: linear-gradient(180deg, #f8fafc 0%, #eef3fb 70%);
+      --bg-contact: linear-gradient(180deg, #eaf2ff 0%, #f8fafc 70%);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg-main);
+      line-height: 1.6;
+      transition: background 0.6s ease;
+    }
+
+    /* =========================
+       LAYOUT
+       ========================= */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 3.5rem 0;
+    }
+
+    h1, h2, h3 { margin: 0 0 0.5rem 0; }
+
+    h1 { font-size: 1.35rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.05rem; }
+
+    p { margin: 0.25rem 0 0.75rem 0; }
+
+    .muted { color: var(--muted); }
+
+    /* =========================
+       HEADER
+       ========================= */
+    header {
+      background: linear-gradient(135deg, var(--primary), #56ccf2);
+      color: white;
+      padding: 1.6rem 0 0.6rem;
+      position: relative;
+    }
+
+    /* USR logo – fixed, corner */
+    .usr-logo {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 160px;
+      height: auto;
+      object-fit: contain;
+      background: transparent;
+      padding: 0;
+      z-index: 10;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.15);
+      padding: 0.35rem;
+      border-radius: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      padding: 0.45rem 0.8rem;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    nav a.cta {
+      background: white;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* =========================
+       CARDS & GRID
+       ========================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 28px rgba(15,23,42,0.08);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    /* =========================
+       PROJECT TIMELINE
+       ========================= */
+    .timeline-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .timeline-bar {
+      position: relative;
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      margin: 0.6rem 0 0.9rem;
+    }
+
+    .timeline-progress {
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), #56ccf2);
+      border-radius: 999px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px #dbeafe;
+    }
+
+    .doc-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* =========================
+       VIDEO
+       ========================= */
+    iframe {
+      width: 100%;
+      height: 360px;
+      border: none;
+      border-radius: 12px;
+    }
+
+    /* =========================
+       FORM
+       ========================= */
+    form input, form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      margin-bottom: 0.75rem;
+    }
+
+    form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+    footer {
+      padding: 0.8rem 1rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<img class="usr-logo" src="poze/siglausr.png" alt="USR" />
+
+<header>
+  <div class="container header-inner">
+    <div>
+      <h1>Burdea Bogdan-Gabriel</h1>
+      <p style="opacity:0.9;font-size:0.9rem;">Consilier Local · Comuna Bivolari · USR</p>
+    </div>
+    <nav>
+      <a href="#media">Media & intervenții</a>
+      <a href="#proiecte">Proiecte</a>
+      <a href="#sedinta-ultima">Ultima ședință</a>
+      <a href="#sedinta-viitoare">Următoarea ședință</a>
+      <a href="#transparenta">Transparență</a>
+      <a href="#contact" class="cta">Sesizări</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- DESPRE MINE -->
+  <section id="despre" style="margin-top:1.5rem;">
+    <h2>Despre mine</h2>
+    <div class="card">
+      <div class="grid" style="grid-template-columns: 1.2fr 0.8fr;align-items:center;">
+        <div>
+          <p><strong>Burdea Bogdan-Gabriel</strong> — consilier local în comuna Bivolari, din partea USR.</p>
+          <p class="muted">Lucrez pentru transparență reală, cheltuirea corectă a banului public și decizii explicate pe înțelesul tuturor. Pe această pagină public proiecte, documente și rezumatele ședințelor, astfel încât oricine să poată urmări activitatea din Consiliul Local.</p>
+
+          <div class="grid" style="grid-template-columns: repeat(3, 1fr);gap:0.9rem;margin-top:1rem;">
+            <div style="background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);border-radius:14px;padding:0.9rem;">
+              <p style="margin:0;font-weight:700;">Transparență</p>
+              <p class="muted" style="margin:0.25rem 0 0 0;font-size:0.9rem;">Documente publice, pe înțeles și la timp.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);border-radius:14px;padding:0.9rem;">
+              <p style="margin:0;font-weight:700;">Eficiență</p>
+              <p class="muted" style="margin:0.25rem 0 0 0;font-size:0.9rem;">Soluții clare, costuri justificate.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);border-radius:14px;padding:0.9rem;">
+              <p style="margin:0;font-weight:700;">Respect</p>
+              <p class="muted" style="margin:0.25rem 0 0 0;font-size:0.9rem;">Dialog civilizat, răspunsuri asumate.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.2rem;">
+            <a href="#contact" class="doc-link" style="background:var(--primary);color:white;padding:0.55rem 0.9rem;border-radius:10px;text-decoration:none;">Trimite o sesizare</a>
+            <a href="#media" class="doc-link" style="background:rgba(255,255,255,0.6);border:1px solid rgba(0,0,0,0.08);padding:0.55rem 0.9rem;border-radius:10px;text-decoration:none;">Vezi intervențiile</a>
+            <a href="#transparenta" class="doc-link" style="background:rgba(255,255,255,0.6);border:1px solid rgba(0,0,0,0.08);padding:0.55rem 0.9rem;border-radius:10px;text-decoration:none;">Documente publice</a>
+          </div>
+
+          <p class="muted" style="margin-top:0.9rem;font-size:0.9rem;">Ai o problemă în comună sau o propunere concretă? Folosește secțiunea <strong>Sesizări</strong> — poți scrie și anonim.</p>
+        </div>
+
+        <div style="text-align:right;">
+          <img src="poze/pozacumine.jpg" alt="Burdea Bogdan-Gabriel" style="width:260px;height:260px;object-fit:cover;border-radius:18px;border:1px solid rgba(0,0,0,0.06);box-shadow:0 10px 28px rgba(15,23,42,0.10);" />
+          <p class="muted" style="font-size:0.8rem;margin-top:0.6rem;"></p>
+          <div style="display:flex;justify-content:flex-end;gap:0.6rem;flex-wrap:wrap;margin-top:0.6rem;">
+            <a class="doc-link" href="#" style="font-size:0.85rem;">Facebook</a>
+            <a class="doc-link" href="#" style="font-size:0.85rem;">YouTube</a>
+            <a class="doc-link" href="#" style="font-size:0.85rem;">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MEDIA -->
+  <section id="media">
+    <h2>Media & intervenții publice</h2>
+    <p class="muted">Materiale video în care explic activitatea și deciziile din Consiliul Local.</p>
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- PROIECTE -->
+  <section id="proiecte" data-bg="projects">
+    <h2>Proiecte și inițiative</h2>
+    <p class="muted">Evoluția fiecărui proiect este publică și ușor de urmărit.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>#01 Regulament de transparență decizională</h3>
+        <div class="timeline-labels">
+          <span>Doc.</span><span>Red.</span><span>Dep.</span><span>OZ</span><span>Apr.</span><span>Impl.</span>
+        </div>
+        <div class="timeline-bar">
+          <div class="timeline-progress" style="width:85%"></div>
+          <div class="timeline-dot" style="left:85%"></div>
+        </div>
+        <p class="muted"><strong>Status:</strong> aprobat · urmează implementarea</p>
+        <a class="doc-link" href="#">Vezi documentația</a>
+      </div>
+
+      <div class="card">
+        <h3>#02 Modernizare iluminat public</h3>
+        <div class="timeline-labels">
+          <span>Doc.</span><span>Red.</span><span>Dep.</span><span>OZ</span><span>Apr.</span><span>Impl.</span>
+        </div>
+        <div class="timeline-bar">
+          <div class="timeline-progress" style="width:45%"></div>
+          <div class="timeline-dot" style="left:45%"></div>
+        </div>
+        <p class="muted"><strong>Status:</strong> proiect în lucru</p>
+        <a class="doc-link" href="#">Note de fundamentare</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEDINTE -->
+  <section id="sedinta-ultima" data-bg="info">
+    <h2>Ce s-a întâmplat la ultima ședință</h2>
+    <div class="card">
+      <p><strong>Data:</strong> 15 februarie 2026</p>
+      <ul>
+        <li>3 proiecte aprobate</li>
+        <li>1 proiect respins</li>
+        <li>2 puncte retrase</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="sedinta-viitoare" data-bg="info">
+    <h2>Ce urmează la următoarea ședință</h2>
+    <div class="card">
+      <p><strong>Estimare:</strong> martie 2026</p>
+      <ul>
+        <li>Buget local</li>
+        <li>Iluminat public</li>
+        <li>Achiziții publice</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TRANSPARENTA -->
+  <section id="transparenta">
+    <h2>Transparență și informații publice</h2>
+    <p class="muted">Documente publice puse la dispoziție într-un format ușor de accesat.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" data-bg="contact">
+    <h2>Trimite o sesizare</h2>
+    <p class="muted">Reclamație, propunere sau opinie. Poți trimite mesajul anonim.</p>
+    <div class="card">
+      <form>
+        <textarea rows="5" placeholder="Mesajul tău..."></textarea>
+        <button type="submit">Trimite</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 · Burdea Bogdan-Gabriel · Consilier Local Bivolari · USR
+</footer>
+
+<script>
+  const bgMap = {
+    projects: getComputedStyle(document.documentElement).getPropertyValue('--bg-projects'),
+    info: getComputedStyle(document.documentElement).getPropertyValue('--bg-info'),
+    contact: getComputedStyle(document.documentElement).getPropertyValue('--bg-contact'),
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const key = entry.target.dataset.bg;
+        if (bgMap[key]) document.body.style.background = bgMap[key];
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('section[data-bg]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
